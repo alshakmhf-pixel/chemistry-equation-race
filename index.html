@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light"><title>سباق موازنة التفاعلات الكيميائية</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+body{margin:0;height:100%;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:linear-gradient(#cfeaff,#eaf6ff);color:#0b2e5c;overflow:hidden;transition:background .5s}
+body.boss{background:linear-gradient(#d9ccff,#f1ebff)}
+#app{position:relative;z-index:2;height:100%;overflow:auto}
+.c{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;text-align:center}
+button{font:inherit;font-weight:700;border:0;border-radius:14px;padding:10px 18px;min-height:46px;background:#fff;color:#0b2e5c;box-shadow:0 3px 0 #9cc7ee;cursor:pointer}
+button:active{transform:translateY(2px)}button:disabled{opacity:.5}
+button.big{background:#1c7ed6;color:#fff;font-size:1.3rem;box-shadow:0 4px 0 #0b4f94}
+.bt{display:flex;flex-direction:column;gap:10px;width:min(340px,90vw)}
+h1{margin:0;font-size:clamp(1.4rem,4vw,2.5rem)}h2{margin:0}
+.sub{font-size:1.2rem;margin:0;color:#1c7ed6;font-weight:700}
+.hero{font-size:4rem;animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.bub{position:absolute;bottom:-40px;border-radius:50%;background:rgba(255,255,255,.6);border:1px solid #fff;animation:up linear infinite;z-index:1;pointer-events:none}
+@keyframes up{to{transform:translateY(-115vh)}}
+.card{background:#fff;border-radius:16px;padding:14px;max-width:560px;width:100%;text-align:start;line-height:1.7}
+.card input{font:inherit;width:100%;padding:10px;border:2px solid #9cc7ee;border-radius:10px;margin:4px 0;user-select:text;-webkit-user-select:text}
+.avs button{font-size:1.6rem;margin:3px}.avs .sel{background:#1c7ed6}
+.stairs{display:flex;flex-direction:column;gap:6px;align-items:flex-start;width:min(560px,96vw)}
+.step{width:calc(100% - var(--m));margin-inline-start:var(--m);text-align:start;display:flex;gap:8px;border:3px solid;box-shadow:0 3px 0 #9cc7ee}
+.step em{margin-inline-start:auto;font-style:normal}.step.lk{background:#e3e8ee;color:#7a8a9a}
+.step.cur{animation:gl 1.2s infinite alternate}@keyframes gl{to{box-shadow:0 0 18px 4px #ffd43b}}
+#race{display:flex;height:100%;direction:ltr;gap:6px;padding:6px}
+.pn{flex:1;min-width:0;direction:rtl;background:#fff;border-radius:16px;padding:8px;display:flex;flex-direction:column;gap:5px;overflow:auto;border:4px solid transparent;transition:box-shadow .3s}
+.pn.okp{box-shadow:0 0 28px 6px #40c057;border-color:#40c057}.pn.badp{box-shadow:0 0 22px 5px #fa5252;border-color:#fa5252}.pn.frz{background:#f1fff4}
+.shk{animation:sk .4s}@keyframes sk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.hd{display:flex;justify-content:space-between;font-weight:800}.nm{font-size:1.25rem}
+.sts{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.9rem;background:#eaf4ff;border-radius:10px;padding:4px 8px}
+.pg{height:10px;background:#dbe7f3;border-radius:6px;overflow:hidden}.pg i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1c7ed6,#40c057);transition:width .4s}
+.eq{direction:ltr;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:4px}
+.sp{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sp button{width:54px;min-height:42px;padding:0;font-size:1.5rem}
+.sp b{font-size:1.9rem;color:#fff;background:#1c7ed6;border-radius:12px;min-width:54px;text-align:center;padding:1px 0}
+.fm{font-size:1.3rem;font-weight:700;white-space:nowrap}.op{font-size:1.6rem;font-weight:800;padding-bottom:30px}
+.hh{direction:ltr;display:flex;justify-content:space-between;font-weight:800;font-size:.85rem;color:#1c7ed6;border-top:2px solid #cfe3f5;padding-top:4px}
+.at{direction:ltr;flex:1}.ar{display:grid;grid-template-columns:1fr 30px 1fr;gap:4px;align-items:center;border-bottom:1px dashed #cfe3f5;padding:2px 0}
+.ds{display:flex;flex-wrap:wrap;gap:2px;align-items:center;min-height:16px;font-size:.8rem}.ds b{margin-inline-end:4px}
+.d{width:11px;height:11px;border-radius:50%;box-shadow:inset -2px -2px 3px rgba(0,0,0,.3)}.d.n{animation:pop .4s}@keyframes pop{from{transform:scale(0)}}
+.st{text-align:center;font-weight:800}.st.g{color:#2f9e44}.st.x{color:#e03131}
+.msg{min-height:44px;font-weight:700;text-align:center}.msg.g{color:#2f9e44}.msg.r{color:#e03131}.msg.y{color:#e67700}
+.ac{display:flex;gap:8px}.ac button{flex:1}.ac .ok{background:#2f9e44;color:#fff;box-shadow:0 3px 0 #1b6b2d}
+.ctr{width:150px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;direction:rtl;font-size:.9rem}
+#tm{font-size:2.6rem;font-weight:900;background:#0b2e5c;color:#fff;border-radius:14px;padding:4px 10px;font-variant-numeric:tabular-nums;direction:ltr}
+#tm.w{background:#e03131;animation:pl .5s infinite alternate}@keyframes pl{to{transform:scale(1.12)}}
+.tip{background:#fff8db;border-radius:10px;padding:6px;font-size:.8rem}.lvb{font-weight:800}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(11,46,92,.78);display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}
+.ov .card{text-align:center}.cd{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;font-size:7rem;font-weight:900;color:#fff;background:rgba(11,46,92,.7)}
+.cd.pop{animation:cp .8s}@keyframes cp{from{transform:scale(2.2);opacity:0}}
+#bn{position:fixed;top:12px;left:50%;transform:translate(-50%,-150%);z-index:70;background:#0b2e5c;color:#fff;padding:10px 20px;border-radius:14px;font-weight:800;transition:transform .4s}#bn.show{transform:translate(-50%,0)}
+.pt{position:fixed;z-index:80;font-size:1.6rem;pointer-events:none;animation:pt 1.3s ease-out forwards}
+@keyframes pt{to{transform:translate(var(--dx),var(--dy)) rotate(360deg);opacity:0}}
+table{width:100%;border-collapse:collapse}td,th{padding:4px;border-bottom:1px solid #dbe7f3}
+.fx{position:absolute;font-size:2rem;opacity:.25;animation:fl 5s ease-in-out infinite;z-index:1;pointer-events:none}
+@media(max-aspect-ratio:1/1){#race{flex-direction:column}.ctr{width:auto;flex-direction:row;flex-wrap:wrap;justify-content:center}}
+</style></head><body><div id="bg"></div><div id="app"></div><div id="bn"></div>
+<script>
+const $=s=>document.querySelector(s),AV=['🧪','⚗️','🔬','⚛️'];
+const COL={H:'#4dabf7',O:'#fa5252',C:'#343a40',N:'#7048e8',Na:'#fab005',Cl:'#40c057',Mg:'#20c997',Fe:'#d9480f',Al:'#868e96',K:'#e64980',Ca:'#94d82d',P:'#ff922b',Si:'#a9825b',Cu:'#c2763a',Mn:'#ae3ec9',Cr:'#15aabf',S:'#fcc419'};
+function ld(k,d){try{return Object.assign(d,JSON.parse(localStorage.getItem(k)||'{}'))}catch(e){return d}}
+function sv(){try{localStorage.setItem('cer1s',JSON.stringify(S));localStorage.setItem('cer1',JSON.stringify(P))}catch(e){}}
+const S=ld('cer1s',{snd:1,mus:1,fx:1});let P=ld('cer1',{u:1,d:{},a:{},st:{g:0,s:0,bs:0,bt:0}});
+// ---- equation database (extend by adding rows: [equation, solution, seconds]) ----
+const LV=[
+{n:'المبتدئ',i:'🟢',c:'#2f9e44',e:[['H2+O2>H2O',[2,1,2],45],['N2+H2>NH3',[1,3,2],45],['Mg+O2>MgO',[2,1,2],45],['Na+Cl2>NaCl',[2,1,2],45]]},
+{n:'المتدرب',i:'🟡',c:'#f59f00',e:[['CH4+O2>CO2+H2O',[1,2,1,2],50],['Fe+O2>Fe2O3',[4,3,2],50],['Al+O2>Al2O3',[4,3,2],50]]},
+{n:'المتقدم',i:'🟠',c:'#f76707',e:[['C2H6+O2>CO2+H2O',[2,7,4,6],60],['Al+HCl>AlCl3+H2',[2,6,2,3],60],['KClO3>KCl+O2',[2,2,3],55]]},
+{n:'الخبير',i:'🔴',c:'#e03131',e:[['C3H8+O2>CO2+H2O',[1,5,3,4],70],['Fe2O3+CO>Fe+CO2',[1,3,2,3],65],['Ca(OH)2+H3PO4>Ca3(PO4)2+H2O',[3,2,1,6],75]]},
+{n:'تحدي العالم الكيميائي',i:'⚡',c:'#7048e8',boss:1,e:[['C4H10+O2>CO2+H2O',[2,13,8,10],60],['Cu+HNO3>Cu(NO3)2+NO+H2O',[3,8,3,2,4],60]]},
+{n:'عالم الكيمياء',i:'🟣',c:'#7048e8',e:[['Al(OH)3+H2SO4>Al2(SO4)3+H2O',[2,3,1,6],90],['C2H5OH+O2>CO2+H2O',[1,3,2,3],80],['Ca3(PO4)2+SiO2+C>CaSiO3+CO+P4',[2,6,10,6,10,1],100]]},
+{n:'الأسطورة',i:'🔮',c:'#9c36b5',e:[['NH3+O2>NO+H2O',[4,5,4,6],90],['FeS2+O2>Fe2O3+SO2',[4,11,2,8],100]]},
+{n:'تحدي العالم الكيميائي الأكبر',i:'⚡',c:'#5f3dc4',boss:1,e:[['KMnO4+HCl>KCl+MnCl2+Cl2+H2O',[2,16,2,2,5,8],90],['K2Cr2O7+HCl>KCl+CrCl3+Cl2+H2O',[1,14,2,2,3,7],80]]}];
+const TIPS=['💡 تذكّر: المعامل يغيّر عدد الجزيئات، وليس صيغة المركب.','💡 تذكّر: يجب أن يتساوى عدد ذرات كل عنصر في الطرفين.','💡 ابدأ غالبًا بالعناصر التي تظهر في مركب واحد في كل طرف.','💡 اترك الهيدروجين والأكسجين للنهاية غالبًا.','💡 الرقم الصغير (الأسفل) جزء من الصيغة ولا يتغير.'];
+const A=[['first','🏅','أول معادلة','وازن أول معادلة لك'],['fast','⚡','سريع جدًا','أنهِ المعادلة خلال 15 ثانية'],['expert','🎓','خبير الموازنة','أنهِ مستوى من الخبير فما فوق'],['clean','✨','بدون أخطاء','أنهِ جولة دون محاولة خاطئة'],['king','👑','ملك الحركات','وازن بأقل عدد ممكن من الحركات']];
+// ---- chemistry core ----
+function parse(f){let i=0;const num=()=>{let s='';while(i<f.length&&/\d/.test(f[i]))s+=f[i++];return s?+s:1};
+function grp(){const o={};while(i<f.length){const c=f[i];if(c=='('){i++;const s=grp();i++;const n=num();for(const k in s)o[k]=(o[k]||0)+s[k]*n}else if(c==')')return o;else if(/[A-Z]/.test(c)){let e=c;i++;while(i<f.length&&/[a-z]/.test(f[i]))e+=f[i++];const n=num();o[e]=(o[e]||0)+n}else i++}return o}return grp()}
+const fm=f=>f.replace(/(\d+)/g,'<sub>$1</sub>'),esc=s=>s.replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+let G={names:['اللاعب الأول','اللاعب الثاني'],av:[0,1],streak:[0,0],gen:0,last:{}};
+function cnt(co){const r={};G.eq.sp.forEach((f,i)=>{const s=i<G.eq.nr?0:1,a=parse(f);for(const e in a)(r[e]=r[e]||[0,0])[s]+=a[e]*co[i]});return r}
+function bal(co){const r=cnt(co);return G.eq.els.every(e=>r[e][0]==r[e][1])}
+// ---- sound ----
+let AC;function tone(f,d=.12,t='sine',v=.15,w=0,m){if(!S.snd||(m&&!S.mus))return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),T=AC.currentTime+w;o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,T);g.gain.exponentialRampToValueAtTime(.001,T+d);o.connect(g);g.connect(AC.destination);o.start(T);o.stop(T+d)}catch(e){}}
+const SFX={click:()=>tone(520,.06),cd:()=>tone(660,.15,'square',.08),go:()=>tone(1040,.4,'square',.1),tick:()=>tone(880,.07,'square',.04),bad:()=>tone(180,.3,'sawtooth',.1),ok:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.2,'triangle',.18,i*.1)),bell:()=>[1200,900,1200].forEach((f,i)=>tone(f,.5,'sine',.2,i*.3)),win:()=>[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,.25,'triangle',.18,i*.12)),ach:()=>[880,1175,1568].forEach((f,i)=>tone(f,.2,'sine',.15,i*.1))};
+const NT=[392,494,587,494,440,523,659,523];let nk=0;setInterval(()=>{if(G.running)tone(NT[nk++%8],.3,'sine',.03,0,1)},450);
+// ---- ui helpers ----
+function go(h){$('#app').innerHTML=h}
+function stop(){G.gen++;clearInterval(G.int);G.running=false;document.body.classList.remove('boss')}
+function bn(t){const b=$('#bn');b.textContent=t;b.classList.add('show');setTimeout(()=>b.classList.remove('show'),2600)}
+function conf(el){if(!S.fx)return;const r=el.getBoundingClientRect(),E=['🧪','✨','🎉','⚛️','🫧','⭐'];for(let i=0;i<26;i++){const s=document.createElement('span');s.className='pt';s.textContent=E[i%6];s.style.cssText=`left:${r.left+r.width/2}px;top:${r.top+r.height/3}px;--dx:${(Math.random()-.5)*420}px;--dy:${-Math.random()*260-40}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),1400)}}
+const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+(function(){let h='';for(let i=0;i<14;i++){const z=8+Math.random()*26;h+=`<div class=bub style="left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${8+Math.random()*10}s;animation-delay:-${Math.random()*12}s"></div>`}['🧪','⚗️','🔬','⚛️'].forEach((e,i)=>h+=`<div class=fx style="left:${8+i*28}%;top:${6+(i%2)*80}%;animation-delay:-${i}s">${e}</div>`);$('#bg').innerHTML=h})();
+// ---- screens ----
+function menu(){stop();go(`<div class=c><div class=hero>🧪⚗️⚛️🔬</div><h1>🧪 سباق موازنة التفاعلات الكيميائية</h1><p class=sub>وازن المعادلة... كن الأسرع!</p><div class=bt><button class=big onclick="SFX.click();how(1)">▶️ ابدأ اللعبة</button><button onclick="SFX.click();how()">📖 طريقة اللعب</button><button onclick="SFX.click();ach()">🏆 الإنجازات</button><button onclick="SFX.click();stats()">📊 الإحصائيات</button><button onclick="SFX.click();sett()">⚙️ الإعدادات</button></div></div>`)}
+function how(n){go(`<div class=c><h2>📖 طريقة اللعب</h2><div class=card>١) يتلقى اللاعبان نفس المعادلة غير الموزونة.<br>٢) غيّر المعاملات بالأزرار + و − (كل ضغطة = حركة واحدة).<br>٣) راقب الذرات في الأسفل: يجب أن يتساوى عدد كل عنصر في الطرفين.<br>٤) اضغط ✅ تحقق. المعادلة الخاطئة لا تكشف الإجابة، والتلميح 💡 يخصم نقاطًا.<br>٥) النقاط = أساس + مكافأة السرعة − خصم الحركات الزائدة والتلميحات والأخطاء.<br>٦) المعامل يغيّر عدد الجزيئات وليس صيغة المركب.</div><button class=big onclick="${n?'names()':'menu()'}">${n?'فهمت، لنبدأ ▶️':'🏠 رجوع'}</button></div>`)}
+function names(){go(`<div class=c><h2>👥 اللاعبون</h2>${[0,1].map(p=>`<div class=card><label>${p?'أدخل اسم اللاعب الثاني':'أدخل اسم اللاعب الأول'}</label><input id=n${p} maxlength=14 placeholder="${G.names[p]}"><div class=avs id=av${p}>${AV.map((a,i)=>`<button class="${G.av[p]==i?'sel':''}" onclick="G.av[${p}]=${i};SFX.click();av(${p})">${a}</button>`).join('')}</div></div>`).join('')}<button class=big onclick="nm()">🪜 اختيار المستوى</button></div>`)}
+function av(p){document.querySelectorAll('#av'+p+' button').forEach((b,i)=>b.className=G.av[p]==i?'sel':'')}
+function nm(){[0,1].forEach(p=>{const v=$('#n'+p).value.trim();if(v)G.names[p]=v});G.streak=[0,0];map()}
+function map(){stop();let h='<div class=c><h2>🏆 قمة الكيمياء</h2><div class=stairs>';for(let i=LV.length;i>=1;i--){const L=LV[i-1],lk=i>P.u;h+=`<button class="step ${lk?'lk':''} ${i==P.u?'cur':''}" style="--m:${(i-1)*26}px;border-color:${L.c}" ${lk?'disabled':''} onclick="pick(${i})"><span>${L.i}</span><span>المستوى ${i} — ${L.n}</span><em>${lk?'🔒':P.d[i]?'✅':''}</em></button>`}go(h+'</div><button onclick="menu()">🏠 القائمة</button></div>')}
+function ach(){go(`<div class=c><h2>🏆 الإنجازات</h2><div class=card>${A.map(a=>`<div style="opacity:${P.a[a[0]]?1:.4}">${a[1]} <b>${a[2]}</b> — ${a[3]} ${P.a[a[0]]?'✅':'🔒'}</div>`).join('')}</div><button onclick="menu()">🏠 رجوع</button></div>`)}
+function stats(){const s=P.st;go(`<div class=c><h2>📊 الإحصائيات</h2><div class=card>🎮 الجولات: ${s.g}<br>✅ المعادلات الموزونة: ${s.s}<br>🏆 أعلى نقاط: ${s.bs}<br>⏱️ أسرع زمن: ${s.bt?mmss(s.bt):'—'}<br>🔓 أعلى مستوى مفتوح: ${P.u}</div><button onclick="menu()">🏠 رجوع</button></div>`)}
+function sett(){const t=(k,l)=>`<button onclick="S.${k}=1-S.${k};sv();sett()">${l}: ${S[k]?'تشغيل ✅':'إيقاف ⛔'}</button>`;go(`<div class=c><h2>⚙️ الإعدادات</h2><div class=bt>${t('snd','🔊 الصوت')}${t('mus','🎵 الموسيقى')}${t('fx','✨ المؤثرات')}<button disabled>🌐 اللغة: العربية (المزيد قريبًا)</button><button onclick="if(confirm('مسح كل التقدم؟')){P={u:1,d:{},a:{},st:{g:0,s:0,bs:0,bt:0}};sv();sett()}">🗑️ إعادة ضبط التقدم</button><button onclick="menu()">🏠 رجوع</button></div></div>`)}
+// ---- race ----
+function pick(l){G.lvl=l;startRace()}
+function startRace(){stop();const L=LV[G.lvl-1];let c;do{c=L.e[Math.random()*L.e.length|0]}while(L.e.length>1&&c===G.last[G.lvl]);G.last[G.lvl]=c;
+const[a,b]=c[0].split('>'),R=a.split('+'),sp=[...R,...b.split('+')];G.eq={sp,nr:R.length,sol:c[1],t:c[2],els:[...new Set(sp.flatMap(f=>Object.keys(parse(f))))],boss:!!L.boss};G.min=c[1].reduce((s,v)=>s+v-1,0);G.el=0;G.lastLeft=-1;G.tip=-1;
+G.pl=[0,1].map(()=>({co:sp.map(()=>1),mv:0,h:0,w:0,t:new Set(),done:0,tm:0,fs:0,g:0,d:0,prev:{}}));document.body.classList.toggle('boss',G.eq.boss);
+go(`<div id=race>${pnl(0)}<div class=ctr><div class=lvb>${L.i} المستوى ${G.lvl}<br>${L.n}</div><div>⏱️ المؤقت</div><div id=tm>${mmss(c[2])}</div><div>🔥 السباق مستمر!</div><div id=ah></div><div class=tip id=tp></div><button onclick="if(confirm('الخروج من السباق؟'))map()">🪜 خروج</button></div>${pnl(1)}</div><div class=cd id=cd></div>`);
+upd(0);upd(1);ahead();cdn()}
+function pnl(p){return`<div class=pn id=pn${p}><div class=hd><span class=nm>${AV[G.av[p]]} ${esc(G.names[p])}</span><span>${G.eq.boss?'⚡ تحدي':''}</span></div><div class=sts><span>🏆 النقاط: <b id=sc${p}>0</b></span><span>🔄 الحركات: <b id=mv${p}>0</b></span><span>⏱️ الزمن: <b id=tt${p}>00:00</b></span><span>💡 التلميحات: <b id=hh${p}>0</b></span></div><div class=pg><i id=pg${p}></i></div><div class=eq>${G.eq.sp.map((f,i)=>`${i==G.eq.nr?'<span class=op>→</span>':i?'<span class=op>+</span>':''}<div class=sp><button onclick="chg(${p},${i},1)">+</button><b id=c${p}_${i}>1</b><button onclick="chg(${p},${i},-1)">−</button><div class=fm>${fm(f)}</div></div>`).join('')}</div><div class=hh><span>المتفاعلات</span><span>النواتج</span></div><div class=at id=at${p}></div><div class="msg" id=ms${p}>&nbsp;</div><div class=ac><button class=ok onclick="chk(${p})">✅ تحقق</button><button onclick="hnt(${p})">💡 تلميح</button></div></div>`}
+function cdn(){const o=$('#cd'),g=++G.gen,q=['3','2','1','انطلق! 🚀'];let i=0;(function n(){if(g!=G.gen)return;o.textContent=q[i];o.classList.remove('pop');void o.offsetWidth;o.classList.add('pop');i<3?SFX.cd():SFX.go();if(i++<3)setTimeout(n,900);else setTimeout(()=>{if(g!=G.gen)return;o.remove();G.running=true;G.t0=performance.now();G.int=setInterval(tick,200);tick()},700)})()}
+function ds(q,e,s,n){const k=e+s,pv=q.prev[k]||0;q.prev[k]=n;const c=COL[e]||'#555';let h=`<div class=ds><b style="color:${c}">${e}×${n}</b>`;for(let i=0;i<Math.min(n,36);i++)h+=`<span class="d${i>=pv?' n':''}" style="background:${c}"></span>`;return h+'</div>'}
+function upd(p){const q=G.pl[p],r=cnt(q.co);G.eq.sp.forEach((_,i)=>$(`#c${p}_${i}`).textContent=q.co[i]);$('#mv'+p).textContent=q.mv;$('#hh'+p).textContent=q.h;
+$('#at'+p).innerHTML=G.eq.els.map(e=>{const ok=r[e][0]==r[e][1];return`<div class=ar>${ds(q,e,0,r[e][0])}<div class="st ${ok?'g':'x'}">${ok?'✓':'≠'}</div>${ds(q,e,1,r[e][1])}</div>`}).join('');
+$('#pg'+p).style.width=(q.done?100:q.t.size/q.co.length*100)+'%';sco(p)}
+function sc(p){const q=G.pl[p],el=q.done?q.tm:G.el,g=(G.eq.boss?1500:1000)+Math.round(500*Math.max(0,G.eq.t-el)/G.eq.t)+G.streak[p]*50,d=Math.max(0,q.mv-G.min)*15+q.h*75+q.w*30;return{g,d,f:Math.max(100,g-d)}}
+function sco(p){const q=G.pl[p];$('#sc'+p).textContent=q.done?q.fs:sc(p).f}
+function chg(p,i,d){if(!G.running)return;const q=G.pl[p];if(q.done)return;const v=q.co[i]+d;if(v<1||v>20){SFX.bad();return}q.co[i]=v;q.mv++;q.t.add(i);SFX.click();upd(p)}
+function chk(p){if(!G.running)return;const q=G.pl[p];if(q.done)return;const m=$('#ms'+p),pn=$('#pn'+p);
+if(bal(q.co)){q.done=1;q.tm=G.el;const s=sc(p);q.g=s.g;q.d=s.d;q.fs=s.f;pn.classList.add('frz','okp');m.className='msg g';m.innerHTML='🟢 ممتاز! المعادلة موزونة بشكل صحيح<br>🏆 تمت الموازنة!';SFX.ok();conf(pn);if(!G.pl[1-p].done)bn('🏆 '+(p?'اللاعب الثاني':'اللاعب الأول')+' ('+G.names[p]+') أنهى المعادلة!');upd(p);if(G.pl[1-p].done)end()}
+else{q.w++;pn.classList.remove('shk');void pn.offsetWidth;pn.classList.add('shk','badp');setTimeout(()=>pn.classList.remove('badp'),700);m.className='msg r';m.textContent='🔴 المعادلة غير موزونة';SFX.bad()}}
+function hnt(p){if(!G.running)return;const q=G.pl[p];if(q.done)return;const r=cnt(q.co),b=G.eq.els.filter(e=>r[e][0]!=r[e][1]),m=$('#ms'+p);q.h++;m.className='msg y';m.textContent=b.length?`💡 عدد ذرات ${b[0]} غير متساوٍ بين المتفاعلات والنواتج. (−75 نقطة)`:'💡 كل العناصر متساوية. اضغط تحقق! (−75 نقطة)';upd(p)}
+function ahead(){const k=G.pl.map(q=>q.done?200-q.tm/1000:q.t.size/q.co.length*100-q.mv*.01),a=$('#ah');if(Math.abs(k[0]-k[1])<.5)a.innerHTML='⚖️ تقدّم متعادل';else{const w=k[0]>k[1]?0:1;a.innerHTML='🔥 اللاعب المتقدم<br>'+AV[G.av[w]]+' '+esc(G.names[w])}}
+function tick(){G.el=(performance.now()-G.t0)/1000;const left=Math.max(0,Math.ceil(G.eq.t-G.el)),T=$('#tm');T.textContent=mmss(left);T.className=left<=10?'w':'';
+if(left!==G.lastLeft){G.lastLeft=left;if(left<=10&&left>0)SFX.tick()}const ti=Math.floor(G.el/12)%TIPS.length;if(ti!==G.tip){G.tip=ti;$('#tp').textContent=TIPS[ti]}
+G.pl.forEach((q,p)=>{if(!q.done){$('#tt'+p).textContent=mmss(G.el);sco(p)}else $('#tt'+p).textContent=mmss(q.tm)});ahead();if(G.el>=G.eq.t)end(1)}
+function end(to){if(!G.running)return;clearInterval(G.int);G.running=false;if(to){SFX.bell();bn('🔔 انتهى الوقت!')}document.querySelectorAll('.pn').forEach(e=>e.classList.add('frz'));setTimeout(res,1300)}
+function res(){const nw=[],ua=k=>{if(!P.a[k]){P.a[k]=1;nw.push(k)}},L=LV[G.lvl-1],st=P.st;let any=0;
+G.pl.forEach((q,p)=>{if(q.done){any=1;st.s++;st.bs=Math.max(st.bs,q.fs);st.bt=st.bt?Math.min(st.bt,Math.round(q.tm)):Math.round(q.tm);ua('first');if(q.tm<=15)ua('fast');if(G.lvl>=4)ua('expert');if(!q.w)ua('clean');if(q.mv==G.min)ua('king');G.streak[p]++}else{q.fs=0;G.streak[p]=0}});
+st.g++;let un='';if(any){P.d[G.lvl]=1;if(G.lvl==P.u&&G.lvl<LV.length){P.u++;un=`🔓 تم فتح المستوى ${P.u}`}}sv();
+const[a,b]=G.pl.map(q=>q.fs),w=a==b?-1:a>b?0:1,win=!any?'⏱️ لم يُنجز أحد المعادلة':w<0?'🤝 تعادل!':`🏆<br>الفائز<br><b style="font-size:1.8rem">${AV[G.av[w]]} ${esc(G.names[w])}</b>`;
+const row=(l,f)=>`<tr><td>${l}</td>${G.pl.map((q,p)=>`<td>${f(q,p)}</td>`).join('')}</tr>`;
+$('#app').insertAdjacentHTML('beforeend',`<div class=ov id=rs><div class=card><h2>${win}</h2>${any?'<div>🎉 تم اجتياز المستوى!</div>':''}<table><tr><th></th>${[0,1].map(p=>`<th>${AV[G.av[p]]} ${esc(G.names[p])}</th>`).join('')}</tr>${row('النقاط المكتسبة',q=>q.done?q.g:0)}${row('نقاط الخصم',q=>q.done?'−'+q.d:0)}${row('النقاط النهائية',q=>`<b>${q.fs}</b>`)}${row('عدد الحركات',q=>q.mv)}${row('زمن الإنجاز',q=>q.done?mmss(q.tm):'—')}${row('الإجابات الصحيحة',q=>q.done?1:0)}${row('المحاولات الخاطئة',q=>q.w)}${row('الدقة',q=>q.done?Math.round(100/(1+q.w))+'%':'0%')}${row('🔥 سلسلة النجاح',(q,p)=>G.streak[p]>1?'×'+G.streak[p]:'—')}</table>${nw.length?`<p>🎖️ إنجاز جديد: ${nw.map(k=>A.find(a=>a[0]==k).slice(1,3).join(' ')).join('، ')}</p>`:''}<p>${un}</p><div class=ac style="flex-wrap:wrap">${any&&G.lvl<LV.length&&G.lvl<P.u?`<button class=ok onclick="pick(G.lvl+1)">▶️ المستوى التالي</button>`:''}<button onclick="startRace()">🔁 جولة جديدة</button><button onclick="map()">🪜 الخريطة</button><button onclick="menu()">🏠</button></div></div></div>`);
+if(any){SFX.win();conf($('#rs'));if(nw.length)setTimeout(SFX.ach,900)}}
+menu();
+</script></body></html>
